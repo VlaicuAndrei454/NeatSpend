@@ -39,5 +39,14 @@ export const API_PATHS = {
             GET_QUOTES:  (symbols) => `/api/v1/stocks/quotes?symbols=${symbols.join(",")}`,
             GET_HISTORY: (symbol)  => `/api/v1/stocks/history/${symbol}`,
           },
+
+          BUDGETS: {
+            GET_ALL: "/api/v1/budgets",
+            ADD: "/api/v1/budgets",
+            GET_ONE: (id) => `/api/v1/budgets/${id}`, // Added GET_ONE
+            UPDATE: (id) => `/api/v1/budgets/${id}`,
+            DELETE: (id) => `/api/v1/budgets/${id}`,
+            GET_CATEGORY_SPENDING_LAST_30_DAYS: "/api/v1/budgets/category-spending-last-30-days", // New path
+          },               
 };
 

@@ -1,3 +1,4 @@
+// filepath: frontend/expense-tracker/src/components/Dashboard/ExpenseTransactions.jsx
 import moment from "moment";
 import React from "react";
 import { LuArrowRight } from "react-icons/lu";
@@ -18,7 +19,8 @@ const ExpenseTransactions = ({transactions, onSeeMore}) => {
         {transactions?.slice(0,5)?.map((expense) => (
           <TransactionInfoCard
             key={expense._id}
-            title={expense.category}
+            title={expense.name} // Use expense.name for title
+            category={expense.category} // Pass category
             icon={expense.icon}
             date={moment(expense.date).format("Do MMM YYYY")}
             amount={expense.amount}

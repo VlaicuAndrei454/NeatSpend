@@ -10,7 +10,7 @@ const AuthLayout = ({ children }) => {
     <div className="flex">
       {/* Left panel (form area) */}
       <div className="w-screen h-screen md:w-3/5 px-12 pt-8 pb-12 flex flex-col justify-center">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Centsible</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">NeatSpend</h2>
         {children}
       </div>
 

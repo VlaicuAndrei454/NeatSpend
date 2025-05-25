@@ -53,10 +53,15 @@ const Expense = () => {
     }
   };
 
+  // ...existing code...
   // Add expense
   const handleAddExpense = async (expense) => {
-    const { category, amount, date, icon } = expense;
-    if (!category.trim()) {
+    const { name, category, amount, date, icon } = expense; // Destructure name
+    if (!name || !name.trim()) { // Validate name
+      toast.error("Expense name/description is required.");
+      return;
+    }
+    if (!category || !category.trim()) {
       toast.error("Category is required.");
       return;
     }
@@ -71,6 +76,7 @@ const Expense = () => {
 
     try {
       await axiosInstance.post(API_PATHS.EXPENSE.ADD_EXPENSE, {
+        name, // Pass name to API
         category,
         amount,
         date,
@@ -85,8 +91,11 @@ const Expense = () => {
         "Error adding expense:",
         error.response?.data?.message || error.message
       );
+      toast.error(error.response?.data?.message || "Failed to add expense.");
     }
   };
+
+// ...existing code...
 
   // Delete expense
   const deleteExpense = async (id) => {
@@ -127,10 +136,10 @@ const Expense = () => {
 
   
 
+ 
   const buildForecastChartData = () => {
-    if (!forecast) return [];
+    if (!forecast) return []; // forecast object from API: { totalDaysInMonth, averageDaily, daysSoFar, totalSpent (actual so far for the month) }
   
-    // 1. Filter for current month & year
     const today = new Date();
     const currentMonth = today.getMonth();
     const currentYear  = today.getFullYear();
@@ -141,34 +150,51 @@ const Expense = () => {
   
     const { totalDaysInMonth, averageDaily, daysSoFar } = forecast;
   
-    // 2. Bucket by day-of-month
     const byDay = thisMonthExpenses.reduce((acc, { date, amount }) => {
-      const day = parseInt(date.split("T")[0].split("-")[2], 10);
-      acc[day] = (acc[day] || 0) + amount;
+      const dayOfMonth = parseInt(date.split("T")[0].split("-")[2], 10);
+      acc[dayOfMonth] = (acc[dayOfMonth] || 0) + amount;
       return acc;
     }, {});
   
-    // 3. Build cumulative + forecast array
     const data = [];
-    let cumActual = 0;
+    // This variable will store the cumulative actual spend for the current 'day' in the loop.
+    let cumulativeActualForDayInLoop = 0; 
+    
     for (let day = 1; day <= totalDaysInMonth; day++) {
-      if (byDay[day]) cumActual += byDay[day];
+      // Update cumulativeActualForDayInLoop only for days up to and including daysSoFar
+      if (day <= daysSoFar) {
+        if (byDay[day]) {
+          cumulativeActualForDayInLoop += byDay[day];
+        }
+      }
+
+      // actualValue is the cumulative spend up to the current 'day', but only if 'day' is within the actual period.
+      const actualValue = day <= daysSoFar ? cumulativeActualForDayInLoop : null;
+      let forecastValue = null;
+
+      // The forecast line should start at 'daysSoFar' with the actual accumulated value.
+      // forecast.totalSpent from the API is the total actual expenses for the month up to daysSoFar.
+      if (day === daysSoFar) {
+        // Anchor the forecast line to the actual spend at daysSoFar.
+        // cumulativeActualForDayInLoop at this point should be equal to forecast.totalSpent.
+        forecastValue = cumulativeActualForDayInLoop; 
+      } else if (day > daysSoFar) {
+        // Project forward from the total actual spend at daysSoFar.
+        forecastValue = parseFloat(
+          (forecast.totalSpent + averageDaily * (day - daysSoFar)).toFixed(2)
+        );
+      }
+
       data.push({
         day,
-        actual: day <= daysSoFar ? cumActual : null,
-        forecast:
-          day > daysSoFar
-            ? +(
-                cumActual +
-                averageDaily * (day - daysSoFar)
-              ).toFixed(2)
-            : null,
+        actual: actualValue,
+        forecast: forecastValue,
       });
     }
-  
     return data;
   };
   
+
 
   useEffect(() => {
     if (!expenseData.length) return;

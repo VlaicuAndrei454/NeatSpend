@@ -1,3 +1,4 @@
+// filepath: frontend/expense-tracker/src/components/Expense/ExpenseList.jsx
 import React from "react";
 import TransactionInfoCard from "../cards/TransactionInfoCard";
 import moment from "moment";
@@ -14,11 +15,12 @@ const ExpenseList = ({ transactions, onDelete, onDownload }) => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4"> {/* Added gap-x-4 for spacing between columns */}
         {transactions?.map((expense) => (
           <TransactionInfoCard
             key={expense._id}
-            title={expense.category}
+            title={expense.name} // Use expense.name for title
+            category={expense.category} // Pass category
             icon={expense.icon}
             date={moment(expense.date).format("Do MMM YYYY")}
             amount={expense.amount}

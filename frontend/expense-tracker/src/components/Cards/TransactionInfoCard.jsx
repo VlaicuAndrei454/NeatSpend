@@ -1,3 +1,4 @@
+// filepath: frontend/expense-tracker/src/components/Cards/TransactionInfoCard.jsx
 import React from "react";
 import {
   LuUtensils,
@@ -9,10 +10,11 @@ import { useCurrency } from "../../hooks/useCurrency";
 
 const TransactionInfoCard = ({
   icon,
-  title,
+  title, // This will be expense.name or income.source
+  category, // New prop specifically for expense category
   date,
   amount,
-  type,
+  type, // "income" or "expense"
   hideDeleteBtn,
   onDelete,
 }) => {
@@ -30,13 +32,17 @@ const TransactionInfoCard = ({
             <img src={icon} alt={title} className="w-6 h-6" />
           )
         ) : (
-          <LuUtensils />
+          <LuUtensils /> // Default icon
         )}
       </div>
 
       <div className="flex-1 flex items-center justify-between">
         <div>
           <p className="text-sm text-gray-700 font-medium">{title}</p>
+          {/* Display category only for expenses and if provided */}
+          {type === "expense" && category && (
+            <p className="text-xs text-gray-500">{category}</p>
+          )}
           <p className="text-xs text-gray-400 mt-1">{date}</p>
         </div>
 

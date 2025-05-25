@@ -1,3 +1,4 @@
+// filepath: frontend/expense-tracker/src/components/Dashboard/RecentTransactions.jsx
 import React from "react";
 import TransactionInfoCard from "../cards/TransactionInfoCard";
 import { LuArrowRight } from "react-icons/lu";
@@ -18,7 +19,8 @@ const RecentTransactions = ({transactions, onSeeMore}) => {
         {transactions?.slice(0,5)?.map((item) => (
           <TransactionInfoCard
             key={item._id}
-            title={item.type == 'expense' ? item.category : item.source}
+            title={item.type === 'expense' ? item.name : item.source} // Use item.name for expense
+            category={item.type === 'expense' ? item.category : undefined} // Pass category for expense
             icon={item.icon}
             date={moment(item.date).format("Do MMM YYYY")}
             amount={item.amount}

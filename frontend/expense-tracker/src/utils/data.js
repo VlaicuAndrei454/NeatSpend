@@ -7,7 +7,7 @@ import {
   LuTrendingUpDown,
 } from "react-icons/lu";
 
-import { FaBitcoin } from "react-icons/fa";
+import { FaBitcoin , FaPiggyBank} from "react-icons/fa";
 
 
 export const SIDE_MENU_DATA = [
@@ -31,20 +31,29 @@ export const SIDE_MENU_DATA = [
   },
 
   {
-        id: "04",
+    id: "04", // Make sure the ID is unique
+    label: "Budgets",
+    icon: FaPiggyBank, // Or your chosen icon
+    path: "/budgets",   // This must match the route in App.jsx
+  },
+
+  {
+        id: "05",
         label: "Subscriptions",
         icon: LuRepeat,
         path: "/subscriptions",
   },
 
   {
-        id: "05",
+        id: "06",
         label: "Stocks",
         icon: LuTrendingUpDown,
         path: "/stocks",
     },
 
-    {id:"06" , label: "Crypto",    path: "/crypto",    icon: FaBitcoin },
+    {id:"07" , label: "Crypto",    path: "/crypto",    icon: FaBitcoin },
+
+    
 
   
   

@@ -16,7 +16,7 @@ const Navbar = ({ activeMenu }) => {
         {openSideMenu ? <HiOutlineX className="text-2xl" /> : <HiOutlineMenu className="text-2xl" />}
       </button>
 
-      <h2 className="text-lg font-medium text-black">Centsible</h2>
+      <h2 className="text-lg font-medium text-black">NeatSpend</h2>
 
       {/* Currency selector */}
       <select

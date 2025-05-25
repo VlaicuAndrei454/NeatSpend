@@ -9,6 +9,7 @@ const expenseRoutes = require("./routes/expenseRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const stocksRoutes = require("./routes/stocksRoutes");
+const budgetRoutes = require("./routes/budgetRoutes"); // Add this line
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/subscriptions", subscriptionRoutes);
 app.use("/api/v1/stocks", stocksRoutes);
+app.use("/api/v1/budgets", budgetRoutes); // Add this line
 
 // Serve uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
