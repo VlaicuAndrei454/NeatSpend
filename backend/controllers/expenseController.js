@@ -3,7 +3,7 @@ const Expense = require("../models/Expense");
 
 const PREDEFINED_EXPENSE_CATEGORIES = [
   "Groceries", "Restaurants", "Transport", "Services",
-  "Cashback", "Credit", "Subscription", "Entertainment", "Gift", "Other"
+  "Cashback", "Credit", "Subscription", "Entertainment", "Gift", "Other" 
 ];
 
 // Add Expense
