@@ -1,7 +1,7 @@
 // filepath: frontend/expense-tracker/src/components/Dashboard/RecentTransactions.jsx
 import React from "react";
 import TransactionInfoCard from "../cards/TransactionInfoCard";
-import { LuArrowRight } from "react-icons/lu";
+import { LuArrowRight, LuReceipt } from "react-icons/lu";
 import moment from "moment";
 
 const RecentTransactions = ({transactions, onSeeMore}) => {
@@ -14,6 +14,14 @@ const RecentTransactions = ({transactions, onSeeMore}) => {
           See All <LuArrowRight className="text-base" />
         </button>
       </div>
+
+      {(!transactions || transactions.length === 0 )&& (
+              <div className="flex flex-col items-center justify-center text-center py-6 flex-grow">
+                <LuReceipt className="text-4xl text-gray-300 mb-3" />
+                <p className="text-gray-500 mb-1">No transactions recorded yet.</p>
+                <p className="text-sm text-gray-400">Your transactions will appear here once you start tracking them.</p>
+              </div>
+            )}
 
       <div className="mt-6">
         {transactions?.slice(0,5)?.map((item) => (

@@ -38,11 +38,26 @@ const RecentIncomeWithChart = ({ data }) => {
     );
   }, [data]);
 
+  if(data.length === 0){ 
+    return (
+      <div className="card">
+      <div className="flex items-center justify-between">
+        <h5 className="text-lg">Last 60 Days Income</h5>
+      </div>
+      <div className="flex flex-col items-center justify-center text-center py-6 flex-grow">
+        <p className="text-gray-500 mb-1">No incomes recorded yet.</p>
+        <p className="text-sm text-gray-400">Start tracking your incomes here.</p>
+      </div>
+      </div>
+    );
+  }
+
   return (
     <div className="card">
       <div className="flex items-center justify-between">
         <h5 className="text-lg">Last 60 Days Income</h5>
       </div>
+
 
       <CustomPieChart
         data={chartData}

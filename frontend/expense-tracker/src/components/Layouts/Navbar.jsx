@@ -29,6 +29,7 @@ const Navbar = ({ activeMenu }) => {
         <option value="GBP">GBP</option>
         <option value="JPY">JPY</option>
         <option value="RON">RON</option>
+        <option value="CAD">CAD</option>
       </select>
 
       {openSideMenu && (

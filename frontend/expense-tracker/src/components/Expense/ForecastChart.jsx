@@ -20,7 +20,7 @@ const ForecastChart = ({ data }) => {
           />
           <YAxis
             tick={{ fontSize: 12, fill: "#555" }}
-            label={{ value: "Cumulative", angle: -90, position: "insideLeft", offset: 10 }}
+            label={{ angle: -90, position: "insideLeft", offset: 10 }}
             tickFormatter={(val) => formatCurrency(val)}
           />
           <Tooltip formatter={(value) => formatCurrency(value)} />

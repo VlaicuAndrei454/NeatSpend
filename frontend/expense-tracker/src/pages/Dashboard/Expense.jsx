@@ -272,6 +272,8 @@ const Expense = () => {
             onExpenseIncome={() => setOpenAddExpenseModal(true)}
           />
 
+        
+
           <ExpenseList
             transactions={expenseData}
             onDelete={(id) => setOpenDeleteAlert({ show: true, data: id })}

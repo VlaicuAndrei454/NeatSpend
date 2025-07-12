@@ -41,18 +41,18 @@ const BudgetListItem = ({ budget: initialBudget, onEdit, onDelete }) => {
   }, []);
 
   useEffect(() => {
-    if (initialBudget && isExpanded && initialBudget._id && !budgetDetails) {
-        fetchBudgetDetails(initialBudget._id);
+    // Fetch details if we have a budget ID and haven't fetched them yet.
+    // This will run on mount and if the budget prop changes.
+    if (initialBudget?._id && !budgetDetails && !loadingDetails) {
+      fetchBudgetDetails(initialBudget._id);
     }
-  }, [initialBudget, isExpanded, budgetDetails, fetchBudgetDetails]);
+  }, [initialBudget, budgetDetails, loadingDetails, fetchBudgetDetails]);
 
 
   const toggleExpand = () => {
-    const newExpandedState = !isExpanded;
-    setIsExpanded(newExpandedState);
-    if (newExpandedState && !budgetDetails && initialBudget?._id) {
-      fetchBudgetDetails(initialBudget._id);
-    }
+    setIsExpanded(!isExpanded);
+    // The useEffect above handles fetching, so we just need to toggle the state.
+    // If for some reason details failed to load, expanding again will re-trigger the fetch via the useEffect.
   };
   
   const budgetToDisplay = budgetDetails || initialBudget;
