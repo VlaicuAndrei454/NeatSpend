@@ -1,7 +1,7 @@
 // src/pages/Dashboard/Crypto.jsx
 
 import React, { useEffect, useState } from "react";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
+import DashboardLayout from "../../components/Layouts/DashboardLayout";
 import axios from "axios";
 import { useCurrency } from "../../hooks/useCurrency";
 import CryptoChart from "../../components/Crypto/CryptoChart";
