@@ -1,6 +1,6 @@
 // filepath: frontend/expense-tracker/src/components/Dashboard/RecentTransactions.jsx
 import React from "react";
-import TransactionInfoCard from "../cards/TransactionInfoCard";
+import TransactionInfoCard from "../Cards/TransactionInfoCard";
 import { LuArrowRight, LuReceipt } from "react-icons/lu";
 import moment from "moment";
 
