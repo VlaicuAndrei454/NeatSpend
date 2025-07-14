@@ -44,7 +44,7 @@ const CustomPieChart = ({
         outerRadius={100}
         innerRadius={60}
         paddingAngle={2}
-        labelLine={true}
+        labelLine={false}
         label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
       >
         {data.map((entry, i) => {

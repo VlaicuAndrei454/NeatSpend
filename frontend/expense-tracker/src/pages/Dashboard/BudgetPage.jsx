@@ -8,8 +8,10 @@ import BudgetForm from '../../components/Budgets/BudgetForm';
 import BudgetListItem from '../../components/Budgets/BudgetListItem';
 import { LuPlus, LuLoader } from 'react-icons/lu'; // Corrected: LuLoader2 to LuLoader
 import DeleteAlert from '../../components/DeleteAlert';
+import { useUserAuth } from "../../hooks/useUserAuth";
 
 const BudgetPage = () => {
+   useUserAuth();
   const [budgets, setBudgets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -119,7 +121,7 @@ const BudgetPage = () => {
         )}
 
         {!loading && budgets.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {budgets.map((budget) => (
               <BudgetListItem
                 key={budget._id}

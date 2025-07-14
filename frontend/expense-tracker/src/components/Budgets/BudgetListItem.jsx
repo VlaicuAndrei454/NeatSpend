@@ -148,7 +148,7 @@ const BudgetListItem = ({ budget: initialBudget, onEdit, onDelete }) => {
                             {formatCurrency(alloc.spent)} / {formatCurrency(alloc.amount)}
                           </span>
                         </div>
-                        <ProgressBar value={alloc.spent} max={alloc.amount} colorClass={alloc.remaining < 0 ? 'bg-red-400' : 'bg-green-400'} />
+                        <ProgressBar value={alloc.spent} max={alloc.amount} colorClass={alloc.remaining < 0 ? 'bg-red-400' : (alloc.spent / alloc.amount > 0.8 ? 'bg-yellow-400' : 'bg-green-400')} />
                         <p className={`text-right text-xs mt-0.5 ${alloc.remaining < 0 ? 'text-red-500' : 'text-green-600'}`}>
                             {alloc.remaining < 0 ? `Over by ${formatCurrency(Math.abs(alloc.remaining))}` : `${formatCurrency(alloc.remaining)} left`}
                         </p>

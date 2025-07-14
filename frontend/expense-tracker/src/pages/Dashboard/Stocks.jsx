@@ -49,7 +49,7 @@ const StocksDashboard = () => {
   return (
     <DashboardLayout activeMenu="Stocks">
       <div className="my-5 mx-auto">
-        <h3 className="text-xl mb-4">Stock Prices</h3>
+        <h3 className="text-2xl font-semibold text-gray-800">Stock Prices</h3>
 
         {loading ? (
           <p>Loading stock prices…</p>

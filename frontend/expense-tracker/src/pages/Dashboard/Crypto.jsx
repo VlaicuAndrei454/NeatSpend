@@ -1,18 +1,21 @@
 // src/pages/Dashboard/Crypto.jsx
 
 import React, { useEffect, useState } from "react";
-import DashboardLayout from "../../components/Layouts/DashboardLayout";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
 import axios from "axios";
 import { useCurrency } from "../../hooks/useCurrency";
 import CryptoChart from "../../components/Crypto/CryptoChart";
+import { useUserAuth } from "../../hooks/useUserAuth";
 
 const CRYPTOS = [
   { id: "bitcoin",  name: "Bitcoin",  symbol: "BTC" },
   { id: "ethereum", name: "Ethereum", symbol: "ETH" },
   { id: "litecoin", name: "Litecoin", symbol: "LTC" },
+  { id: "ripple",   name: "Ripple",   symbol: "XRP" },
 ];
 
 const CryptoDashboard = () => {
+  useUserAuth();
   const { formatCurrency } = useCurrency();
   const [prices, setPrices]     = useState({});
   const [history, setHistory]   = useState({});
@@ -67,7 +70,7 @@ const CryptoDashboard = () => {
   return (
     <DashboardLayout activeMenu="Crypto">
       <div className="my-5 mx-auto">
-        <h3 className="text-xl mb-4">Cryptocurrency Prices</h3>
+        <h3 className="text-2xl font-semibold text-gray-800">Cryptocurrency Prices</h3>
 
         <div className="grid grid-cols-1 gap-6">
           {CRYPTOS.map(({ id, name, symbol }) => {

@@ -88,7 +88,6 @@ exports.downloadExpenseExcel = async (req, res) => {
       Category: item.category,
       Amount: item.amount,
       Date: item.date ? new Date(item.date).toLocaleDateString() : 'N/A',
-      Icon: item.icon || 'N/A',
       CreatedAt: new Date(item.createdAt).toLocaleString(),
     }));
     

@@ -117,6 +117,8 @@ const BudgetForm = ({ onSubmit, onCancel, initialData }) => {
     cat => !budget.categoryAllocations.find(alloc => alloc.category === cat)
   );
 
+    console.log("Current Category Spending:", categorySpending);
+
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 text-sm">

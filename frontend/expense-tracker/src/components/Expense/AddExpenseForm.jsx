@@ -37,6 +37,12 @@ const AddExpenseForm = ({ onAddExpense }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+
+      <EmojiPickerPopup
+          icon={expense.icon}
+          onSelect={(selectedIcon) => handleChange("icon", selectedIcon)}
+        />
+        
       <Input
         label="Expense Name / Description"
         placeholder="e.g., Coffee, Monthly Groceries"
@@ -46,34 +52,33 @@ const AddExpenseForm = ({ onAddExpense }) => {
         required
       />
 
-      <div className="flex items-center space-x-3">
-        <EmojiPickerPopup
-          icon={expense.icon}
-          onSelect={(selectedIcon) => handleChange("icon", selectedIcon)}
-        />
+      
+        
         <div className="flex-grow">
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="category" className="block text-[13px] text-slate-800 mb-1">
             Category <span className="text-red-500">*</span>
           </label>
-          <select
-            id="category"
-            name="category"
-            value={expense.category}
-            onChange={({ target }) => handleChange("category", target.value)}
-            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            required
-          >
-            <option value="" disabled>
-              Select a category
-            </option>
-            {EXPENSE_CATEGORIES.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
+          <div className="input-box">
+            <select
+              id="category"
+              name="category"
+              value={expense.category}
+              onChange={({ target }) => handleChange("category", target.value)}
+              className="w-full bg-transparent outline-none"
+              required
+            >
+              <option value="" disabled hidden>
+                Select a category
               </option>
-            ))}
-          </select>
-        </div>
-      </div>
+              {EXPENSE_CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
+          </div>
+     
 
       <Input
         value={expense.amount}

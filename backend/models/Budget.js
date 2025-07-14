@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Ensure this list is consistent with PREDEFINED_EXPENSE_CATEGORIES in your Expense.js model
 const PREDEFINED_BUDGET_CATEGORIES = [
   "Groceries", "Restaurants", "Transport", "Services",
-  "Cashback", "Credit", "Subscription", "Entertainment", "Gift", "Rent" , "Other"
+  "Cashback", "Credit", "Subscription", "Entertainment", "Gift", "Rent" , "Other" 
 ];
 
 // Sub-schema for individual category allocations within a budget period

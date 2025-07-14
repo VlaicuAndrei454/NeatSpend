@@ -31,10 +31,10 @@ export const SIDE_MENU_DATA = [
   },
 
   {
-    id: "04", // Make sure the ID is unique
+    id: "04", 
     label: "Budgets",
-    icon: FaPiggyBank, // Or your chosen icon
-    path: "/budgets",   // This must match the route in App.jsx
+    icon: FaPiggyBank, 
+    path: "/budgets",   
   },
 
   {

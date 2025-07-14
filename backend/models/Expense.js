@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const PREDEFINED_EXPENSE_CATEGORIES = [
   "Groceries", "Restaurants", "Transport", "Services",
-  "Cashback", "Credit", "Subscription", "Entertainment", "Gift", "Rent", "Other"
+  "Cashback", "Credit", "Subscription", "Entertainment", "Gift", "Rent", "Other" 
 ];
 
 const ExpenseSchema = new mongoose.Schema({

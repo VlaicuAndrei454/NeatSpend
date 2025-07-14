@@ -43,7 +43,8 @@ const BudgetOverview = () => {
       const today = new Date();
       today.setHours(0,0,0,0); // Normalize today to start of day for comparison
 
-      const currentActiveBudget = allBudgets.find(b => {
+      // 1. Find ALL active budgets, not just the first one
+      const allActiveBudgets = allBudgets.filter(b => {
         const startDate = new Date(b.startDate);
         startDate.setHours(0,0,0,0);
         const endDate = new Date(b.endDate);
@@ -51,10 +52,20 @@ const BudgetOverview = () => {
         return startDate <= today && endDate >= today;
       });
 
-      if (currentActiveBudget) {
+      // 2. Decide which one to show if there are multiple
+      let budgetToShow = null;
+      if (allActiveBudgets.length > 1) {
+        // Sort by start date descending to get the most recent one first
+        allActiveBudgets.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+        budgetToShow = allActiveBudgets[0]; // Pick the most recently started budget
+      } else if (allActiveBudgets.length === 1) {
+        budgetToShow = allActiveBudgets[0]; // Only one was found
+      }
+
+      if (budgetToShow) {
         // Fetch details for this active budget
         try {
-          const detailsResponse = await axiosInstance.get(API_PATHS.BUDGETS.GET_ONE(currentActiveBudget._id));
+          const detailsResponse = await axiosInstance.get(API_PATHS.BUDGETS.GET_ONE(budgetToShow._id));
           setActiveBudgetDetails(detailsResponse.data);
         } catch (detailError) {
           console.error("Error fetching active budget details:", detailError);
@@ -85,7 +96,7 @@ const BudgetOverview = () => {
           onClick={() => navigate('/budgets')}
           className="card-btn"
         >
-          Manage Budgets <LuArrowRight className="text-base" />
+          See All <LuArrowRight className="text-base" />
         </button>
       </div>
 

@@ -9,7 +9,7 @@ export const EXPENSE_CATEGORIES = [
     "Entertainment",
     "Gift",
     "Rent",
-    "Other", // Added "Other" as a fallback
+    "Other",
   ];
 
 

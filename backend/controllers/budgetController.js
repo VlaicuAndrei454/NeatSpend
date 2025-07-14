@@ -220,10 +220,15 @@ exports.getCategorySpendingLast30Days = async (req, res) => {
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
         thirtyDaysAgo.setHours(0, 0, 0, 0); // Start of the 30th day ago
 
+        
+
+
         const expenses = await Expense.find({
-            user: userId,
+            userId: userId,
             date: { $gte: thirtyDaysAgo }
         });
+
+        
 
         const spendingByCategory = expenses.reduce((acc, expense) => {
             acc[expense.category] = (acc[expense.category] || 0) + expense.amount;

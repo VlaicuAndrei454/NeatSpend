@@ -63,6 +63,8 @@ exports.downloadIncomeExcel = async (req, res) => {
       Source: item.source,
       Amount: item.amount,
       Date: item.date,
+      Date: item.date ? new Date(item.date).toLocaleDateString() : 'N/A',
+      CreatedAt: new Date(item.createdAt).toLocaleString(),
     }));
     
     const wb = xlsx.utils.book_new();
