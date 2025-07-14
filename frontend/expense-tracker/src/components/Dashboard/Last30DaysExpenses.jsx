@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CustomBarChart from "../charts/CustomBarChart";
+import CustomBarChart from "../Charts/CustomBarChart";
 import { prepareExpenseBarChartData } from "../../utils/helper";
 import { LuWalletMinimal , LuTrendingUp } from "react-icons/lu";
 import { FaChartBar } from "react-icons/fa";
