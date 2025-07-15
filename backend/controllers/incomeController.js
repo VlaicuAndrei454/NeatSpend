@@ -1,5 +1,6 @@
 const xlsx = require('xlsx');
 const Income = require("../models/Income");
+const { get } = require('mongoose');
 
 // Add Income
 exports.addIncome = async (req, res) => {
@@ -11,6 +12,13 @@ exports.addIncome = async (req, res) => {
     // Validation: Check for missing fields
     if (!source || !amount || !date) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const selectedDate = new Date(date);
+    const currentDate = new Date();
+
+    if(selectedDate > currentDate) {
+      return res.status(400).json({ message: "Date cannot be in the future." });
     }
 
     const newIncome = new Income({ 

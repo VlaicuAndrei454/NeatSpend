@@ -66,6 +66,14 @@ const Income = () => {
       return;
     }
 
+    const selectedDate = new Date(date);
+    const now = new Date();
+
+    if (selectedDate > now) {
+      toast.error("Date cannot be in the future.");
+      return;
+  }
+
     try {
       await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
         source,

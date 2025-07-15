@@ -23,6 +23,10 @@ exports.addSubscription = async (req, res) => {
       return res.status(400).json({ message: "Invalid nextBillingDate provided." });
     }
 
+    if (nb <= sd) {
+      return res.status(400).json({ message: "Next billing date must be after the start date." });
+    }
+
     const subscription = await Subscription.create({
       user:             req.user.id,
       name:             name.trim(),
